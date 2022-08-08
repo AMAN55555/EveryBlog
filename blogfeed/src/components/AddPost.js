@@ -54,11 +54,11 @@ function AddPost() {
             var formdata = new FormData();
 
             formdata.append("file", image);
-            formdata.append("cloud_name", "dqqzndgaj");
-            formdata.append("upload_preset", "i9pvlvbe");
+            formdata.append("cloud_name", "CLOUD_NAME");
+            formdata.append("upload_preset", "PRESET NAME");
 
             let res = fetch(
-                "https://api.cloudinary.com/v1_1/dqqzndgaj/image/upload",
+                "CLOUDINARY URL",
                 {
                     method: "post",
                     mode: "cors",
