@@ -3,5 +3,5 @@ A multi-user blogging application built using MERN (MongoDB, Express, React, Nod
 # Live Demo:
 https://every-blog.herokuapp.com/
 # Tech stack: 
-React, Redux, Node, Express, MongoDB
+React js, Node js, Express, MongoDB
 
