@@ -2,7 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var cors = require('cors')
 const mongoose = require('mongoose');
-const {MONGO_URI, JWT} = require('./config/db');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv')
 dotenv.config()
@@ -20,6 +19,9 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+const MONGO_URI=process.env.MONGO_URI;
+const JWT=process.env.JWT;
 
 mongoose.connect(MONGO_URI,{
     useNewUrlParser: true,
