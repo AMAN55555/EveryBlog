@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv')
 dotenv.config()
 
-
-
 require('./models/users');
 require('./models/posts');
 const Users = mongoose.model('Users')
@@ -18,14 +16,10 @@ const requiredAuth = require('./middleware/authverify')
 
 var app = express();
 
-app.set("view engine","ejs");
-
 app.use(cors());
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-const {signUp, addPost} = require('./routes/auth') 
 
 mongoose.connect(MONGO_URI,{
     useNewUrlParser: true,
@@ -76,9 +70,6 @@ app.get('/blog/:id', (req, res)=>{
         })
 });
 
-
-app.get('/addpost', requiredAuth, addPost)
-
 app.post('/addpost', requiredAuth, (req, res)=>{
     const {title, tag, body, image} = req.body;
     var post = new Posts({
@@ -111,26 +102,8 @@ app.post('/profile', (req, res)=>{
 
 });
 
-
-
-
-
-app.get('/signin', middleWare, (req, res)=>{
-    console.log("Signin!");
-});
-
 app.post('/signin', (req, res)=>{
-//    if(req.body.userName.length==0 || req.body.passWord.length==0 ){
-//         return res.status(422).json({
-//             error: "Please Enter all credentials!"
-//         });
-//    }
-
     Users.findOne({ username: req.body.userName, password: req.body.passWord },  function(err, users) {
-        //if (err) throw err;
-
-
-
         if(users){
             const token = jwt.sign({_id:users._id},JWT)
             const {_id,name,username,email} = users
@@ -151,10 +124,6 @@ app.post('/signin', (req, res)=>{
         }
     });
 })
-
-app.get('/signup', middleWare, (req, res)=>{
-    console.log("Signup!");
-});
 
 app.post('/signup', (req, res)=>{
     
