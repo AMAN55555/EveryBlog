@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const {JWT} = require('../config/db');
+const dotenv = require('dotenv');
+const JWT = process.env.JWT;
 const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 
